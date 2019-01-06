@@ -157,7 +157,7 @@ function draw() {
     
 
 
-playSound(soundD,68);
+playSound(soundD,68); //TODO
  if(soundD.isPlaying()){
      
      
@@ -198,50 +198,48 @@ if (soundE.isPlaying()) {
 }
 
 playSound(soundF,70);
- if(soundF.isPlaying()){
+ if(soundF.isPlaying()){ //TODO
      
      
 
  }
 
     playSound(soundG,71);
- if(soundG.isPlaying()){
+ if(soundG.isPlaying()){ //TODO
 
  }
 
  playSound(soundH,72);
- if(soundH.isPlaying()){
+ if(soundH.isPlaying()){ //TODO
 
  }
 
  playSound(soundI,73);
- if(soundI.isPlaying()){
+ if(soundI.isPlaying()){ //TODO
 
  }
 
  playSound(soundJ,74);
- if(soundJ.isPlaying()){
+ if(soundJ.isPlaying()){ //TODO
 
  }
 
  playSound(soundK,75);
- if(soundK.isPlaying()){
+ if(soundK.isPlaying()){//TODO
 
  }
 
  playSound(soundL,76);
- if(soundL.isPlaying()){
+ if(soundL.isPlaying()){//TODO
 
  }
 
  playSound(soundM,77);
- if(soundM.isPlaying()){
+ if(soundM.isPlaying()){//TODO
 
  }
 
 playSound(soundN, 78); //n
-
-
 if (soundN.isPlaying()) {
     push()
 
@@ -296,17 +294,17 @@ if (soundN.isPlaying()) {
 }
 
  playSound(soundO,79);
- if(soundO.isPlaying()){
+ if(soundO.isPlaying()){//TODO
 
 }
 
  playSound(soundP,80);
- if(soundP.isPlaying()){
+ if(soundP.isPlaying()){//TODO
 
  }
 
  playSound(soundQ,81);
- if(soundQ.isPlaying()){
+ if(soundQ.isPlaying()){//TODO
 
  }
 
@@ -345,7 +343,7 @@ if (soundS.isPlaying()) {
 }
 
  playSound(soundT,84);
- if(soundT.isPlaying()){
+ if(soundT.isPlaying()){ //TODO
 
  }
 
@@ -371,7 +369,7 @@ if (soundS.isPlaying()) {
  
 
 playSound(soundV,86);
- if(soundV.isPlaying()){
+ if(soundV.isPlaying()){//TODO
 
  }
 
@@ -390,12 +388,12 @@ if (soundW.isPlaying()) {
 }
 
  playSound(soundX,88);
- if(soundX.isPlaying()){
+ if(soundX.isPlaying()){//TODO
 
  }
 
 playSound(soundY,89);
-if(soundY.isPlaying()){
+if(soundY.isPlaying()){//TODO
 
  }
 
@@ -413,19 +411,19 @@ if (soundZ.isPlaying() == true) {
     var coefX = 1;
     var coefY = 1;
     if(soundZ.currentTime < soundZ.duration /4 ) {
-            var coefX = -1;
-            var coefY = -1;
+            coefX = -1;
+            coefY = -1;
 
     }
     else if(soundZ.currentTime < soundZ.duration / 2) {
-                    var coefX = -1;
+                    coefX = -1;
     }
     
     else if(soundZ.currentTime < (3 * soundZ.duration /4) ){
 
     }
     else {
-            var coefY = -1;
+            coefY = -1;
 
     }
     
