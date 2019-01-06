@@ -427,7 +427,7 @@ if (soundZ.isPlaying() == true) {
 
     }
     
-    
+    //bla
     var x = coefX * (width * 0.11);
     var y = coefY * (width * 0.11);
     console.log(" x vaut : " + x + "   y vaut : "+ y + " width    "+ width );
