@@ -14,6 +14,9 @@ var soundAFFT, soundBFFT, soundCFFT, soundDFFT, soundEFFT, soundFFFT, soundGFFT,
 
 var nrj1, x, y;
 
+var tracer;
+var tracer1;
+
 var b1 = false,
     b2 = false,
     b3 = false,
@@ -75,7 +78,12 @@ function setup() {
     soundUFFT.setInput(soundU);
     background(0);
 
+   pixelDensity(1)
+   tracer = new AnimateDrawing(xpos0, ypos0, 1)
     
+    pixelDensity(1)
+   tracer1 = new AnimateDrawing(xpos1,ypos1, 1)
+ 
     
 
 }
@@ -305,6 +313,11 @@ if (soundN.isPlaying()) {
 
  playSound(soundQ,81);
  if(soundQ.isPlaying()){//TODO
+     
+     tracer.animateDrawing(color(255, 0, 0), 5)
+    } else {
+        
+        tracer.resetDrawing()
 
  }
 
@@ -344,6 +357,11 @@ if (soundS.isPlaying()) {
 
  playSound(soundT,84);
  if(soundT.isPlaying()){ //TODO
+     
+     tracer1.animateDrawing(color(255, 0, 0), 5)
+    } else {
+        
+        tracer1.resetDrawing()
 
  }
 
