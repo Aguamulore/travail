@@ -50,8 +50,8 @@ function preload() {
     soundX = loadSound("asstes/Sona1.mp3");
     soundY = loadSound("asstes/Sona2.mp3");
     soundZ = loadSound("asstes/Sona3.mp3");
-    
-    
+
+
 }
 
 
@@ -61,10 +61,10 @@ function setup() {
     //soundA.loop();//
     soundAFFT = new p5.FFT(0.8, 16);
     soundAFFT.setInput(soundA);
-    
+
     soundCFFT = new p5.FFT(0.8, 16);
     soundCFFT.setInput(soundC);
-    
+
     soundWAmp = new p5.Amplitude();
     soundWAmp.setInput(soundW);
 
@@ -73,18 +73,17 @@ function setup() {
 
     soundNFFT = new p5.FFT(0.8, 16);
     soundNFFT.setInput(soundN);
-    
+
     soundUFFT = new p5.FFT(0.8, 16);
     soundUFFT.setInput(soundU);
     background(0);
 
-   pixelDensity(1)
-   tracer = new AnimateDrawing(xpos0, ypos0, 1)
-    
     pixelDensity(1)
-   tracer1 = new AnimateDrawing(xpos1,ypos1, 1)
- 
-    
+    tracer = new AnimateDrawing(xpos0, ypos0, 1)
+
+    pixelDensity(1)
+    tracer1 = new AnimateDrawing(xpos1, ypos1, 1)
+
 
 }
 
@@ -136,14 +135,14 @@ function draw() {
 
     playSound(soundC, 67);
     if (soundC.isPlaying() == true) {
-        
+
         push();
-        
+
         soundCFFT.analyze();
-    rectMode(CENTER);
-    var nrj1 = soundCFFT.getEnergy("bass")
-      
-            
+        rectMode(CENTER);
+        var nrj1 = soundCFFT.getEnergy("bass")
+
+
         stroke(225)
         var r1 = 200;
         var r2 = 300;
@@ -159,173 +158,286 @@ function draw() {
 
         }
         endShape()
-        
+
         pop()
     }
-    
 
 
-playSound(soundD,68); //TODO
- if(soundD.isPlaying()){
-     
-     
-     
- }
-
-playSound(soundE, 69); //e
-if (soundE.isPlaying()) {
-    push()
-    soundEFFT.analyze();
-    rectMode(CENTER);
-
-    nrj1 = soundEFFT.getEnergy("bass");
-
-    push()
-    fill(0, 0, 255, nrj1)
-    translate(width * 0.25, height * 0.5)
-    rotate(PI / 4)
-    rect(0, 0, width * 0.2, width * 0.2)
-    pop()
-
-    push()
-    fill(58, 142, 186, 50)
-    translate(width * 0.5, height * 0.5)
-    rotate(PI / 4)
-    rect(0, 0, nrj1, nrj1)
-    pop()
-
-    push()
-    fill(44, 117, 255, nrj1)
-    translate(width * 0.75, height * 0.5)
-    rotate(PI / 4)
-    rect(0, 0, width * 0.2, width * 0.2)
-    pop()
+    playSound(soundD, 68); //TODO
+    if (soundD.isPlaying()) {
 
 
-    pop()
-}
-
-playSound(soundF,70);
- if(soundF.isPlaying()){ //TODO
-     
-     
-
- }
-
-    playSound(soundG,71);
- if(soundG.isPlaying()){ //TODO
-
- }
-
- playSound(soundH,72);
- if(soundH.isPlaying()){ //TODO
-
- }
-
- playSound(soundI,73);
- if(soundI.isPlaying()){ //TODO
-
- }
-
- playSound(soundJ,74);
- if(soundJ.isPlaying()){ //TODO
-
- }
-
- playSound(soundK,75);
- if(soundK.isPlaying()){//TODO
-
- }
-
- playSound(soundL,76);
- if(soundL.isPlaying()){//TODO
-
- }
-
- playSound(soundM,77);
- if(soundM.isPlaying()){//TODO
-
- }
-
-playSound(soundN, 78); //n
-if (soundN.isPlaying()) {
-    push()
-
-    if (soundN.currentTime() > 0.05 && soundN.currentTime() < 0.80) {
-        fill(255, 255, 0);
-        x = 0.25 * width + (soundN.currentTime() - 0.05) * width * 0.6;
-        y = height * 0.3;
-        ellipse(x, y, 50, 50);
-
-    } else if (soundN.currentTime() > 0.8 && soundN.currentTime() < 1.5) {
-
-        fill(255, 255, 0);
-        ellipse(0.25 * width + width * 0.6, height * 0.3, 50, 50)
-
-
-        x = 0.25 * width + (soundN.currentTime() - 0.8) * width * 0.6;
-        y = height * 0.42;
-        ellipse(x, y, 50, 50);
-
-    } else if (soundN.currentTime() > 1.55 && soundN.currentTime() < 2.25) {
-        fill(255, 255, 0);
-        ellipse(0.25 * width + width * 0.6, height * 0.3, 50, 50)
-        ellipse(0.25 * width + width * 0.6, height * 0.42, 50, 50)
-
-        fill(255, 255, 0);
-        x = 0.25 * width + (soundN.currentTime() - 1.55) * width * 0.6;
-        y = height * 0.54;
-        ellipse(x, y, 50, 50);
-
-    } else if (soundN.currentTime() > 2.3 && soundN.currentTime() < 3) {
-        fill(255, 255, 0);
-        ellipse(0.25 * width + width * 0.6, height * 0.3, 50, 50)
-        ellipse(0.25 * width + width * 0.6, height * 0.42, 50, 50)
-        ellipse(0.25 * width + width * 0.6, height * 0.54, 50, 50)
-
-        fill(255, 255, 0);
-        x = 0.25 * width + (soundN.currentTime() - 2.3) * width * 0.6;
-        y = height * 0.66;
-        ellipse(x, y, 50, 50);
-    } else if (soundN.currentTime() > 3.05 && soundN.currentTime() < 4.1) {
-        soundNFFT.analyze();
-        nrj1 = soundNFFT.getEnergy("bass");
-        fill(255, 255, 0);
-        ellipse(0.25 * width + width * 0.6, height * 0.3, 50, 50)
-        ellipse(0.25 * width + width * 0.6, height * 0.42, 50, 50)
-        ellipse(0.25 * width + width * 0.6, height * 0.54, 50, 50)
-        ellipse(0.25 * width + width * 0.6, height * 0.66, 50, 50)
     }
 
+    playSound(soundE, 69); //e
+    if (soundE.isPlaying()) {
+        push()
+        soundEFFT.analyze();
+        rectMode(CENTER);
 
-    pop()
-}
+        nrj1 = soundEFFT.getEnergy("bass");
 
- playSound(soundO,79);
- if(soundO.isPlaying()){//TODO
+        push()
+        fill(0, 0, 255, nrj1)
+        translate(width * 0.25, height * 0.5)
+        rotate(PI / 4)
+        rect(0, 0, width * 0.2, width * 0.2)
+        pop()
 
-}
+        push()
+        fill(58, 142, 186, 50)
+        translate(width * 0.5, height * 0.5)
+        rotate(PI / 4)
+        rect(0, 0, nrj1, nrj1)
+        pop()
 
- playSound(soundP,80);
- if(soundP.isPlaying()){//TODO
+        push()
+        fill(44, 117, 255, nrj1)
+        translate(width * 0.75, height * 0.5)
+        rotate(PI / 4)
+        rect(0, 0, width * 0.2, width * 0.2)
+        pop()
 
- }
 
- playSound(soundQ,81);
- if(soundQ.isPlaying()){//TODO
-     
-     tracer.animateDrawing(color(255, 0, 0), 5)
+        pop()
+    }
+
+    playSound(soundF, 70);
+    if (soundF.isPlaying()) { //TODO
+
+
+    }
+
+    playSound(soundG, 71);
+    if (soundG.isPlaying()) { //TODO
+
+    }
+
+    playSound(soundH, 72);
+    let soundHTimer1 = 0.2;
+    if (soundH.isPlaying()) { //TODO
+        var x = 0, y = 0, largeur = width * 0.05, hauteur = height * 0.3;
+
+        //décallage de gauche à droite
+        if (soundH.currentTime() < soundHTimer1) {//TODO : check timer on audacity
+
+            x = (soundH.currentTime() * 0.5 * width / soundHTimer1) - 0.5 * largeur;
+            y = 0.5 * height - 0.5 * hauteur;
+            fill(255, 255, 255);
+            rect(x, y, largeur, hauteur);
+        }
+        else if (soundH.currentTime) { //barres aléatoires
+            fill(255, 255, 255);
+            console.log(0.5 * width);
+            // x = 0.5 * width -  0.5* largeur;
+            // y = 0.5 * height - 0.5 * hauteur;
+            translate(width / 2, height / 2);
+
+            //rect(x,y, largeur, hauteur);
+            largeur = largeur / 5;
+            hauteur = hauteur / 2;
+            var randomX = 0, randomY = 0;
+            for (var i = 0; i < 5; i++) {
+                randomX = Math.random();
+                if (randomX < 0.5) randomX = -1;
+                else randomX = 1;
+
+                randomY = Math.random();
+                if (randomY < 0.5) randomY = -1;
+                else randomY = 1;
+
+                x = Math.floor((Math.random() * (0.2 * width)) + 1) * randomX;
+                y = Math.floor((Math.random() * 100) + 1) * randomY;
+
+                rotate(Math.random() * 360);
+                console.log(x);
+                rect(x, y, largeur, hauteur);
+            }
+
+        }
+
+    }
+
+    playSound(soundI, 73);
+    if (soundI.isPlaying()) { //TODO
+
+    }
+
+    playSound(soundJ, 74);
+    if (soundJ.isPlaying()) { //TODO
+
+    }
+
+    playSound(soundK, 75);
+    if (soundK.isPlaying()) {//TODO
+
+    }
+
+    playSound(soundL, 76);
+    if (soundL.isPlaying()) {
+        var x, y1 = height * 0.35, y2 = height * 0.65, first = 0.33, duration = soundL.duration() * 0.85,
+            hauteur = height * 0.05, largeur;
+        if (soundL.currentTime() < first) {
+            fill(255, 255, 255);
+            x = width - soundL.currentTime() * width / first;
+            largeur = width - x;
+            rect(x, y1, largeur, hauteur);
+            fill(255, 255, 255);
+            rect(x, y2, largeur, hauteur);
+        }
+        else {
+            x = width - (soundL.currentTime() - first) * width / (duration - first);
+            largeur = width - x;
+            fill(255, 255, 255);
+            rect(0, y1, width, hauteur);
+            fill(255, 255, 255);
+            rect(0, y2, width, hauteur);
+            fill(0, 0, 0);
+            rect(x, y1, largeur, hauteur);
+            fill(0, 0, 0);
+            rect(x, y2, largeur, hauteur);
+
+
+        }
+
+
+    }
+
+    playSound(soundM, 77);
+    if (soundM.isPlaying()) {
+        let x = 0, y, radius = 0.08 * width;
+        y = height / 2;
+        fill(255, 255, 255);
+        let first = 0.7, second = 1.3, third = 2.15, fourth = 2.90, duration = soundM.duration();
+        if (soundM.currentTime() < first) {
+            x = soundM.currentTime() * width / first;
+            translate(x, y);
+            ellipse(0, 0, radius, radius);
+        }
+        else if (soundM.currentTime() < second) {
+            x = width - (soundM.currentTime() - first) * width * 0.5 / (second - first);
+            translate(x, y);
+            ellipse(0, 0, radius, radius);
+        }
+        else if (soundM.currentTime() < third) {
+            x = width / 2 - (soundM.currentTime() - second) * width * 0.5 / (third - second);
+            y = height / 2 + (soundM.currentTime() - second) * height * 0.5 / (third - second);
+            translate(x, y);
+            ellipse(0, 0, radius, radius);
+        }
+        else if (soundM.currentTime() < fourth) {
+            x = width / 2;
+            y = height / 2 + (soundM.currentTime() - third) * height * 0.5 / (fourth - third);
+            translate(x, y);
+            ellipse(0, 0, radius, radius);
+        }
+        else {
+            x = width / 2 + (soundM.currentTime() - fourth) * width * 0.5 / (duration - fourth);
+            y = height / 2 + (soundM.currentTime() - fourth) * height * 0.5 / (duration - fourth);
+            translate(x, y);
+            ellipse(0, 0, radius, radius);
+
+        }
+    }
+
+    playSound(soundN, 78); //n
+    if (soundN.isPlaying()) {
+        push()
+
+        if (soundN.currentTime() > 0.05 && soundN.currentTime() < 0.80) {
+            fill(255, 255, 0);
+            x = 0.25 * width + (soundN.currentTime() - 0.05) * width * 0.6;
+            y = height * 0.3;
+            ellipse(x, y, 50, 50);
+
+        } else if (soundN.currentTime() > 0.8 && soundN.currentTime() < 1.5) {
+
+            fill(255, 255, 0);
+            ellipse(0.25 * width + width * 0.6, height * 0.3, 50, 50)
+
+
+            x = 0.25 * width + (soundN.currentTime() - 0.8) * width * 0.6;
+            y = height * 0.42;
+            ellipse(x, y, 50, 50);
+
+        } else if (soundN.currentTime() > 1.55 && soundN.currentTime() < 2.25) {
+            fill(255, 255, 0);
+            ellipse(0.25 * width + width * 0.6, height * 0.3, 50, 50)
+            ellipse(0.25 * width + width * 0.6, height * 0.42, 50, 50)
+
+            fill(255, 255, 0);
+            x = 0.25 * width + (soundN.currentTime() - 1.55) * width * 0.6;
+            y = height * 0.54;
+            ellipse(x, y, 50, 50);
+
+        } else if (soundN.currentTime() > 2.3 && soundN.currentTime() < 3) {
+            fill(255, 255, 0);
+            ellipse(0.25 * width + width * 0.6, height * 0.3, 50, 50)
+            ellipse(0.25 * width + width * 0.6, height * 0.42, 50, 50)
+            ellipse(0.25 * width + width * 0.6, height * 0.54, 50, 50)
+
+            fill(255, 255, 0);
+            x = 0.25 * width + (soundN.currentTime() - 2.3) * width * 0.6;
+            y = height * 0.66;
+            ellipse(x, y, 50, 50);
+        } else if (soundN.currentTime() > 3.05 && soundN.currentTime() < 4.1) {
+            soundNFFT.analyze();
+            nrj1 = soundNFFT.getEnergy("bass");
+            fill(255, 255, 0);
+            ellipse(0.25 * width + width * 0.6, height * 0.3, 50, 50)
+            ellipse(0.25 * width + width * 0.6, height * 0.42, 50, 50)
+            ellipse(0.25 * width + width * 0.6, height * 0.54, 50, 50)
+            ellipse(0.25 * width + width * 0.6, height * 0.66, 50, 50)
+        }
+
+
+        pop()
+    }
+
+    playSound(soundO, 79);
+    if (soundO.isPlaying()) {
+        var x = 0, y = 0, nbForme, duration = soundO.duration();
+
+        x = soundO.currentTime() * width / duration;
+        y = height * 0.4;
+        nbForme = Math.round(soundO.currentTime() / (duration / 50));
+        var randomY;
+        for (var i = 0; i <= nbForme; i++) {
+            randomY = Math.random();
+            if (randomY < 0.5) randomY = -1;
+            else randomY = 1;
+
+            y = height * 0.4 + ((randomY * soundO.currentTime()) * Math.floor((Math.random() * 600) + 1));
+            console.log(y);
+            translate(x, y);
+            rotate(Math.random() * 360);
+            fill(255, 255, 255);
+            triangle(100, 100, 300, 100, 200, 300);
+
+        }
+
+    }
+
+    playSound(soundP, 80);
+    if (soundP.isPlaying()) {//TODO
+
+    }
+
+    playSound(soundQ, 81);
+    if (soundQ.isPlaying()) {//TODO
+
+        tracer.animateDrawing(color(255, 0, 0), 5)
     } else {
-        
+
         tracer.resetDrawing()
 
- }
+    }
 
- playSound(soundR,82);
- if(soundR.isPlaying()){
- push();
+    playSound(soundR, 82);
+    if (soundR.isPlaying()) {
+        push();
 
-        var rotation = map(soundR.currentTime(), 0, soundR.duration(), 0, 2*PI);
+        var rotation = map(soundR.currentTime(), 0, soundR.duration(), 0, 2 * PI);
 
 
         translate(width * 0.5, height * 0.5);
@@ -333,125 +445,149 @@ if (soundN.isPlaying()) {
 
         fill(255, 180, 180);
 
-    arc(0, 0, width * 0.5,  width * 0.5,-HALF_PI, HALF_PI);
-    
-
-    pop();
-}
-
- 
-
-playSound(soundS, 83); //s
-if (soundS.isPlaying()) {
-    push();
-    var rotation = map(soundS.currentTime(), 0, soundS.duration(), 0, PI);
-    translate(width * 0.5, height * 0.5);
-    rotate(rotation);
-    rectMode(CENTER);
-    fill(255, 180, 180);
-    rect(0, 0, width * 0.5, width * 0.1);
+        arc(0, 0, width * 0.5, width * 0.5, -HALF_PI, HALF_PI);
 
 
-    pop();
-}
+        pop();
+    }
 
- playSound(soundT,84);
- if(soundT.isPlaying()){ //TODO
-     
-     tracer1.animateDrawing(color(255, 0, 0), 5)
+
+    playSound(soundS, 83); //s
+    if (soundS.isPlaying()) {
+        push();
+        var rotation = map(soundS.currentTime(), 0, soundS.duration(), 0, PI);
+        translate(width * 0.5, height * 0.5);
+        rotate(rotation);
+        rectMode(CENTER);
+        fill(255, 180, 180);
+        rect(0, 0, width * 0.5, width * 0.1);
+
+
+        pop();
+    }
+
+    playSound(soundT, 84);
+    if (soundT.isPlaying()) { //TODO
+
+        tracer1.animateDrawing(color(255, 0, 0), 5)
     } else {
-        
+
         tracer1.resetDrawing()
 
- }
-
- playSound(soundU,85);
- if(soundU.isPlaying() == true){
-     
-    push()
-    var waveform = soundUFFT.waveform();
-     noFill();
-    beginShape();
-    stroke(150, 255, 225); // waveform is mint
-    strokeWeight(10);
-    for (var i = 0; i < waveform.length; i++) {
-        var x = map(i, 0, waveform.length, 0, width);
-        var y = map(waveform[i], -1, 1, 0, height);
-        curveVertex(x, y);
     }
-    endShape();
-     
-    pop()
-}
 
- 
+    playSound(soundU, 85);
+    if (soundU.isPlaying() == true) {
 
-playSound(soundV,86);
- if(soundV.isPlaying()){//TODO
+        push()
+        var waveform = soundUFFT.waveform();
+        noFill();
+        beginShape();
+        stroke(150, 255, 225); // waveform is mint
+        strokeWeight(10);
+        for (var i = 0; i < waveform.length; i++) {
+            var x = map(i, 0, waveform.length, 0, width);
+            var y = map(waveform[i], -1, 1, 0, height);
+            curveVertex(x, y);
+        }
+        endShape();
 
- }
+        pop()
+    }
 
-playSound(soundW, 87); //w
-if (soundW.isPlaying()) {
 
-    push();
-    var lvl = soundWAmp.getLevel();
-    var whitelvl = map(lvl, 0, 1, 0, 255);
-    noStroke;
-    fill(whitelvl);
-    rect(0, 0, width, height);
-    console.log(lvl);
+    playSound(soundV, 86);
+    if (soundV.isPlaying()) {//TODO
+        var x, y = height / 2, first = 1, temp = first + 0.05, second = 4.3, facteur = 5;
+        var radius = width * 0.1;
+        if (soundV.currentTime() < first) {
+            x = (soundV.currentTime() * (width * 0.5)) / first;
+            translate(x, y);
+            fill(255, 255, 255);
+            ellipse(0, 0, radius, radius);
+        }
+        else if (soundV.currentTime() < temp) {
+            translate(width / 2, y);
+            fill(255, 255, 255);
+            radius = radius * facteur;
+            ellipse(0, 0, radius, radius);
+        }
+        else if (soundV.currentTime() < second) {
+            translate(width / 2, y);
+            fill(255, 255, 255);
+            radius = radius * facteur;
+            radius = radius - (soundV.currentTime() - temp) * radius / 13 * (second - temp);
+            ellipse(0, 0, radius, radius);
+            console.log(radius);
+        }
+        else {
+            translate(width / 2, y);
+            fill(255, 255, 255);
+            // ellipse(0,0,radius,radius);
+        }
+    }
 
-    pop();
-}
+    playSound(soundW, 87); //w
+    if (soundW.isPlaying()) {
 
- playSound(soundX,88);
- if(soundX.isPlaying()){//TODO
+        push();
+        var lvl = soundWAmp.getLevel();
+        var whitelvl = map(lvl, 0, 1, 0, 255);
+        noStroke;
+        fill(whitelvl);
+        rect(0, 0, width, height);
+        console.log(lvl);
 
- }
+        pop();
+    }
 
-playSound(soundY,89);
-if(soundY.isPlaying()){//TODO
+    playSound(soundX, 88);
+    if (soundX.isPlaying()) {//TODO
 
- }
+    }
 
- playSound(soundZ,90);
-if (soundZ.isPlaying() == true) {
-    push()
-    var rotation = map(soundZ.currentTime(), 0, soundZ.duration(), 0, 2*PI)    
-    rectMode(CENTER);
-    translate(width * 0.5, height * 0.5);
-    rotate(rotation);
-                                
-    fill(255, 180, 180);
-    ellipse(0, 0, width * 0.3, width * 0.3);
-    fill(20, 180, 180);
-    var coefX = 1;
-    var coefY = 1;
-    if(soundZ.currentTime < soundZ.duration /4 ) {
+    playSound(soundY, 89);
+    if (soundY.isPlaying()) {//TODO
+
+    }
+
+    playSound(soundZ, 90);
+    if (soundZ.isPlaying() == true) {
+        push()
+        var rotation = map(soundZ.currentTime(), 0, soundZ.duration(), 0, 2 * PI)
+        rectMode(CENTER);
+        translate(width * 0.5, height * 0.5);
+        rotate(rotation);
+
+        fill(255, 180, 180);
+        ellipse(0, 0, width * 0.3, width * 0.3);
+        fill(20, 180, 180);
+        var coefX = 1;
+        var coefY = 1;
+        if (soundZ.currentTime < soundZ.duration / 4) {
             coefX = -1;
             coefY = -1;
 
-    }
-    else if(soundZ.currentTime < soundZ.duration / 2) {
-                    coefX = -1;
-    }
-    
-    else if(soundZ.currentTime < (3 * soundZ.duration /4) ){
+        }
+        else if (soundZ.currentTime < soundZ.duration / 2) {
+            coefX = -1;
+        }
 
-    }
-    else {
+        else if (soundZ.currentTime < (3 * soundZ.duration / 4)) {
+
+        }
+        else {
             coefY = -1;
 
+        }
+
+        //bla
+        var x = coefX * (width * 0.11);
+        var y = coefY * (width * 0.11);
+        console.log(" x vaut : " + x + "   y vaut : " + y + " width    " + width);
+        ellipse(x, y, width * 0.05, width * 0.05);
+        pop();
     }
-    
-    //bla
-    var x = coefX * (width * 0.11);
-    var y = coefY * (width * 0.11);
-    console.log(" x vaut : " + x + "   y vaut : "+ y + " width    "+ width );
-    ellipse(x,y,width * 0.05,width * 0.05);
-    pop();
-}
 
 
 }
