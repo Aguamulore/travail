@@ -204,18 +204,40 @@ function draw() {
 
     playSound(soundF, 70);
     if (soundF.isPlaying()) { //TODO
+        push();
+        var radius = height * 0.7;
+        fill(255, 255, 255);
+        translate(width / 2, height / 2);
+        if (soundF.currentTime() < soundF.duration() / 2) {
+            var interval = soundF.duration / 2;
+            ellipse(0, 0, radius, radius);
+            console.log(radius);
+        }
+        else {
 
-
+        }
+        pop();
     }
 
     playSound(soundG, 71);
     if (soundG.isPlaying()) { //TODO
+        push();
+        translate(width / 2, height / 2);
+        fill(255, 255, 255);
+        rotate(frameCount / 50);
+        var x, y;
+        for (var t = 0; t < 500; t += 0.1) {
+            x = t * Math.cos(t);
+            y = t * Math.sin(t);
+            ellipse(x, y, 5, 5);
+        }
+        pop();
 
     }
 
     playSound(soundH, 72);
     let soundHTimer1 = 0.2;
-    if (soundH.isPlaying()) { //TODO
+    if (soundH.isPlaying()) {
         var x = 0, y = 0, largeur = width * 0.05, hauteur = height * 0.3;
 
         //décallage de gauche à droite
@@ -228,9 +250,6 @@ function draw() {
         }
         else if (soundH.currentTime) { //barres aléatoires
             fill(255, 255, 255);
-            console.log(0.5 * width);
-            // x = 0.5 * width -  0.5* largeur;
-            // y = 0.5 * height - 0.5 * hauteur;
             translate(width / 2, height / 2);
 
             //rect(x,y, largeur, hauteur);
@@ -250,7 +269,6 @@ function draw() {
                 y = Math.floor((Math.random() * 100) + 1) * randomY;
 
                 rotate(Math.random() * 360);
-                console.log(x);
                 rect(x, y, largeur, hauteur);
             }
 
@@ -408,7 +426,6 @@ function draw() {
             else randomY = 1;
 
             y = height * 0.4 + ((randomY * soundO.currentTime()) * Math.floor((Math.random() * 600) + 1));
-            console.log(y);
             translate(x, y);
             rotate(Math.random() * 360);
             fill(255, 255, 255);
@@ -418,16 +435,46 @@ function draw() {
 
     }
 
+    //https://www.openprocessing.org/sketch/199700/
     playSound(soundP, 80);
     if (soundP.isPlaying()) {//TODO
+        push();
+        translate(width / 3, height * 0.2);
+        var x = 0, y = 0, endX, endY;
+        while (y < 1000) {//to bottom of screen
+            endX = x + int(random(-4, 4)); //x-value varies
+            endY = y + 1;    //y just goes up
+            strokeWeight(3);//bolt is a little thicker than a line
+            stroke(255); //white line
+            line(x, y, endX, endY);//draw a tiny segment
+            x = endX;  //then x and y are moved to the
+            y = endY;  //end of the segment and so on
+        }
+        pop();
+        if (soundP.currentTime() > 0.6) {
+            push();
+            translate(width * 2 / 3, height * 0.2);
+            var x = 0, y = 0, endX = 0, endY = 0;
+            while (y < 1000) {//to bottom of screen
+                endX = x + int(random(-4, 4)); //x-value varies
+                endY = y + 1;    //y just goes up
+                strokeWeight(3);//bolt is a little thicker than a line
+                stroke(255); //white line
+                line(x, y, endX, endY);//draw a tiny segment
+                x = endX;  //then x and y are moved to the
+                y = endY;  //end of the segment and so on
+            }
+            pop();
+        }
 
     }
 
     playSound(soundQ, 81);
-    if (soundQ.isPlaying()) {//TODO
+    if (soundQ.isPlaying()) {
 
         tracer.animateDrawing(color(255, 0, 0), 5)
-    } else {
+    }
+    else {
 
         tracer.resetDrawing()
 
@@ -467,10 +514,11 @@ function draw() {
     }
 
     playSound(soundT, 84);
-    if (soundT.isPlaying()) { //TODO
+    if (soundT.isPlaying()) {
 
         tracer1.animateDrawing(color(255, 0, 0), 5)
-    } else {
+    }
+    else {
 
         tracer1.resetDrawing()
 
@@ -497,7 +545,7 @@ function draw() {
 
 
     playSound(soundV, 86);
-    if (soundV.isPlaying()) {//TODO
+    if (soundV.isPlaying()) {
         var x, y = height / 2, first = 1, temp = first + 0.05, second = 4.3, facteur = 5;
         var radius = width * 0.1;
         if (soundV.currentTime() < first) {
@@ -518,7 +566,6 @@ function draw() {
             radius = radius * facteur;
             radius = radius - (soundV.currentTime() - temp) * radius / 13 * (second - temp);
             ellipse(0, 0, radius, radius);
-            console.log(radius);
         }
         else {
             translate(width / 2, y);
@@ -536,18 +583,110 @@ function draw() {
         noStroke;
         fill(whitelvl);
         rect(0, 0, width, height);
-        console.log(lvl);
-
         pop();
     }
 
     playSound(soundX, 88);
-    if (soundX.isPlaying()) {//TODO
+    if (soundX.isPlaying()) {
+        push();
+        posY = 1.1 * height + soundX.currentTime() * -300;
+        translate(width * 0.33, posY);
+        rotate(frameCount / 20.0);
+        star(0, 0, 30, 70, 5);
+        pop();
+
+        push();
+        posY = 1.2 * height + soundX.currentTime() * -400;
+        translate(width / 2, posY);
+        rotate(frameCount / 10.0);
+        star(0, 0, 30, 70, 5);
+        pop();
+
+        push();
+        posY = 1.2 * height + soundX.currentTime() * -700;
+        translate(width * .66, posY);
+        rotate(frameCount / 40.0);
+        star(0, 0, 30, 70, 5);
+        pop();
+
+        push();
+        posY = soundX.currentTime() * 400;
+        translate(width / 4, posY);
+        rotate(frameCount / 10.0);
+        star(0, 0, 30, 70, 5);
+        pop();
+
+        push();
+        posY = soundX.currentTime() * 800;
+        translate(width / 2, posY);
+        rotate(frameCount / 10.0);
+        star(0, 0, 30, 70, 5);
+        pop();
+
+        push();
+        posY = -0.3 * height + soundX.currentTime() * 500;
+        translate(width * 0.78, posY);
+        rotate(frameCount / 10.0);
+        star(0, 0, 30, 70, 5);
+        pop();
 
     }
 
+    //https://processing.org/examples/star.html
+    function star(x, y, radius1, radius2, npoints) {
+        var TWO_PI = Math.PI * 2;
+        var angle = TWO_PI / npoints;
+        var halfAngle = angle / 2.0;
+        beginShape();
+        for (var a = 0; a < TWO_PI; a += angle) {
+            var sx = x + cos(a) * radius2;
+            var sy = y + sin(a) * radius2;
+            vertex(sx, sy);
+            sx = x + cos(a + halfAngle) * radius1;
+            sy = y + sin(a + halfAngle) * radius1;
+            vertex(sx, sy);
+        }
+        endShape();
+    }
+
+
     playSound(soundY, 89);
-    if (soundY.isPlaying()) {//TODO
+    if (soundY.isPlaying()) {
+        var duration = soundY.duration(), modulo8 = duration / 8, radius = width / 20,
+            offset = width / 5, first = 6 * modulo8;
+        fill(255, 255, 255);
+        modulo8 = first / 8;
+        translate(width / 2, height / 2);
+        if (soundY.currentTime() < first) {
+            if (soundY.currentTime() > 0) { //en bas
+                ellipse(0, offset, radius, radius);
+            }
+            if (soundY.currentTime() > modulo8) {//BD
+                ellipse((Math.sqrt(2) / 2) * offset, (Math.sqrt(2) / 2) * offset, radius, radius);
+            }
+            if (soundY.currentTime() > 2 * modulo8) {//D
+                ellipse(offset, 0, radius, radius);
+            }
+            if (soundY.currentTime() > 3 * modulo8) {//HD
+                ellipse((Math.sqrt(2) / 2) * offset, -1 * (Math.sqrt(2) / 2) * offset, radius, radius);
+            }
+            if (soundY.currentTime() > 4 * modulo8) {//H
+                ellipse(0, -offset, radius, radius);
+            }
+            if (soundY.currentTime() > 5 * modulo8) {//HG
+                ellipse(-1 * (Math.sqrt(2) / 2) * offset, -1 * (Math.sqrt(2) / 2) * offset, radius, radius);
+            }
+            if (soundY.currentTime() > 6 * modulo8) {//G
+                ellipse(-1 * offset, 0, radius, radius);
+            }
+            if (soundY.currentTime() > 7 * modulo8) {//BG
+                ellipse(-1 * (Math.sqrt(2) / 2) * offset, (Math.sqrt(2) / 2) * offset, radius, radius);
+            }
+
+        }
+        else {
+
+        }
 
     }
 
@@ -584,7 +723,6 @@ function draw() {
         //bla
         var x = coefX * (width * 0.11);
         var y = coefY * (width * 0.11);
-        console.log(" x vaut : " + x + "   y vaut : " + y + " width    " + width);
         ellipse(x, y, width * 0.05, width * 0.05);
         pop();
     }
