@@ -14,6 +14,8 @@ var soundAFFT, soundBFFT, soundCFFT, soundDFFT, soundEFFT, soundFFFT, soundGFFT,
 
 var nrj1, x, y;
 
+var aleaDir;
+
 var tracer;
 var tracer1;
 
@@ -117,7 +119,7 @@ function draw() {
     }
 
     playSound(soundB, 66);
-    if (soundB.isPlaying() == true) {
+    if (soundB.isPlaying()) {
 
         push();
 
@@ -134,7 +136,7 @@ function draw() {
 
 
     playSound(soundC, 67);
-    if (soundC.isPlaying() == true) {
+    if (soundC.isPlaying()) {
 
         push();
 
@@ -165,30 +167,26 @@ function draw() {
 
     playSound(soundD, 68); //TODO
     if (soundD.isPlaying()) {
-        var x, y1 = height * 0.35, y2 = height * 0.65, first = 0.33, duration = soundD.duration(),
-            hauteur = height * 0.05, largeur;
-        if (soundD.currentTime() < first) {
-            fill(255, 255, 255);
-            x = width - soundD.currentTime() * width / first;
-            largeur = width - x;
-            arc(50, 50, 90, 90, 0, PI);
+        push();
+        var begin = 0.06, first = 0.57;
+        var radius = width / 20;
+        translate(width / 2, height / 2);
 
-            rect(x, y1, largeur, hauteur);
-            fill(255, 255, 255);
-            rect(x, y2, largeur, hauteur);
+        if (soundD.currentTime() > begin) {
+            noFill();
+            strokeWeight(25);
+            stroke(255);
+            arc(0, 0, width / 3, width / 3, 0, Math.PI);
         }
-        else {
-            x = width - (soundD.currentTime() - first) * width / (duration - first);
-            largeur = width - x;
-            fill(255, 255, 255);
-            rect(0, y1, width, hauteur);
-            fill(255, 255, 255);
-            rect(0, y2, width, hauteur);
-            fill(0, 0, 0);
-            rect(x, y1, largeur, hauteur);
-            fill(0, 0, 0);
-            rect(x, y2, largeur, hauteur);
+        if (soundD.currentTime() >= first) {
+            fill(255);
+            translate(-width / 3 / 2, -height / 5);
+            ellipse(0, 0, radius, radius);
+
+            translate(width / 3, 0);
+            ellipse(0, 0, radius, radius);
         }
+        pop();
     }
 
     playSound(soundE, 69); //e
@@ -225,21 +223,20 @@ function draw() {
     }
 
     playSound(soundF, 70);
-    if (soundF.isPlaying()) { //TODO
+    if (soundF.isPlaying()) {
         var interval = soundF.duration() / 2;
         push();
         var radius = height * 0.7;
         fill(255, 255, 255);
         if (soundF.currentTime() < soundF.duration() / 2) {
             translate(width / 2, height / 2);
-            radius = radius - ((radius * 0.2) * soundF.currentTime()*4 / interval);
+            radius = radius - ((radius * 0.2) * soundF.currentTime() * 4 / interval);
             ellipse(0, 0, radius, radius);
         }
         else {
-            var x = ((soundF.currentTime() - interval) * (width/2)) / (soundF.duration() - interval);
-            console.log(x);
-            translate(width/2 + x,height/2);
-            ellipse(0,0,radius/5,radius/5);
+            var x = ((soundF.currentTime() - interval) * (width / 2)) / (soundF.duration() - interval);
+            translate(width / 2 + x, height / 2);
+            ellipse(0, 0, radius / 5, radius / 5);
         }
         pop();
     }
@@ -263,6 +260,7 @@ function draw() {
     playSound(soundH, 72);
     let soundHTimer1 = 0.2;
     if (soundH.isPlaying()) {
+        push();
         var x = 0, y = 0, largeur = width * 0.05, hauteur = height * 0.3;
 
         //décallage de gauche à droite
@@ -298,46 +296,100 @@ function draw() {
             }
 
         }
+        pop();
 
     }
 
     playSound(soundI, 73);
     if (soundI.isPlaying()) { //TODO
-        var firstHit = 0.5 , secondHit =1.4 , middleSecondHit = (secondHit - firstHit)/2 + firstHit, duration = soundI.duration(), radius = width/13, posXRect = width*0.6;
+        var firstHit = 0.5, secondHit = 1.4, middleSecondHit = (secondHit - firstHit) / 2 + firstHit,
+            duration = soundI.duration(), radius = width / 13, posXRect = width * 0.6;
         push();
-        fill(255,255,255);
-        rect(posXRect,height*0.2,width/20,height*0.6);
-        if(soundI.currentTime() < firstHit){
+        fill(255, 255, 255);
+        rect(posXRect, height * 0.2, width / 20, height * 0.6);
+        if (soundI.currentTime() < firstHit) {
             x = (soundI.currentTime() * (posXRect + radius)) / firstHit;
-            translate(x,height/2);
-            ellipse(0,0,radius,radius);
+            translate(x, height / 2);
+            ellipse(0, 0, radius, radius);
         }
-        else if(soundI.currentTime() < secondHit){
-            if(soundI.currentTime() < middleSecondHit) {
-            x = (posXRect + radius) + ((soundI.currentTime() - firstHit) * (width*0.3 ) / (middleSecondHit - firstHit) );
-                translate(x,height/2);
-                ellipse(0,0,radius,radius);
-                console.log(x);
+        else if (soundI.currentTime() < secondHit) {
+            if (soundI.currentTime() < middleSecondHit) {
+                x = (posXRect + radius) + ((soundI.currentTime() - firstHit) * (width * 0.3) / (middleSecondHit - firstHit));
+                translate(x, height / 2);
+                ellipse(0, 0, radius, radius);
+
             }
             else {
-                x = ((posXRect + radius) + width*0.3) - ((soundI.currentTime()-middleSecondHit) * (width*0.3 + radius) / (secondHit - middleSecondHit) );
-                translate(x,height/2);
-                ellipse(0,0,radius,radius);
-                console.log(x);
+                x = ((posXRect + radius) + width * 0.3) - ((soundI.currentTime() - middleSecondHit) * (width * 0.3 + radius) / (secondHit - middleSecondHit));
+                translate(x, height / 2);
+                ellipse(0, 0, radius, radius);
+
             }
         }
-        else;
+        else ;
         pop();
     }
 
     playSound(soundJ, 74);
     if (soundJ.isPlaying()) { //TODO
+        var first = 1.17, radius = width * 0.4;
+        push();
+        translate(width * 0.5, height * 0.5);
+        var rotation = map(soundJ.currentTime(), 0, soundJ.duration(), 0, 2 * PI);
+
+        if (soundJ.currentTime() < first) {
+            rotate(rotation);
+            fill(255, 180, 180);
+            arc(0, 0, radius, radius, -HALF_PI, HALF_PI);
+        }
+        else {
+            ellipse(0, 0, radius, radius);
+        }
+        pop();
 
     }
 
     playSound(soundK, 75);
     if (soundK.isPlaying()) {//TODO
+        var largeur, hauteur, randomX = 0, randomY = 0, x, y, randomX, randomY, offsetX;
+        push();
+        fill(255, 255, 255);
+        largeur = width * 0.01;
+        hauteur = height * 0.05;
+        if (soundK.currentTime() === 0.00) {
+            aleaDir = int(random(0, 4));
+        }
+        else {
 
+
+            if (aleaDir < 2) {//0 ou 1 on va à droite
+                translate(width / 10, 0);
+                offsetX = soundK.currentTime() * (width * 0.8) / soundK.duration();
+                translate(offsetX, height / 2);
+            }
+            else {//direction la gauche
+                translate(9 * width / 10, 0);
+                offsetX = -1 * (soundK.currentTime() * (width * 0.8) / soundK.duration());
+                translate(offsetX, height / 2);
+            }
+            for (var i = 0; i < 500; i++) {
+
+                randomX = Math.random();
+                if (randomX < 0.5) randomX = -1;
+                else randomX = 1;
+
+                randomY = Math.random();
+                if (randomY < 0.5) randomY = -1;
+                else randomY = 1;
+
+                x = Math.floor((Math.random() * (0.07 * width)) + 1) * randomX;
+                y = Math.floor((Math.random() * (0.07 * width)) + 1) * randomY;
+
+                rotate(Math.random() * 360);
+                rect(x, y, largeur, hauteur);
+            }
+        }
+        pop();
     }
 
     playSound(soundL, 76);
